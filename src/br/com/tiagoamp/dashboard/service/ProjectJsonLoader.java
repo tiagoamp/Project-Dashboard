@@ -99,7 +99,7 @@ public class ProjectJsonLoader implements ProjectLoader {
 				}
 			}
 			
-			if (item.getStatus() ==Status.DONE) {
+			if (item.getStatus() == Status.DONE) {
 				data = (String) cardMap.get("due"); // end date
 				item.setEnd(sdf.parse(data));
 			}

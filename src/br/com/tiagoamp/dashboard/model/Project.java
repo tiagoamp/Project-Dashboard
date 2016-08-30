@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Represents a project.
+ * 
  * @author tiagoamp
  */
 public class Project {

@@ -119,7 +119,7 @@ public class ProjectDashBoard {
 			Files.walkFileTree(standardOutput, new DashboardVisitor(standardOutput, outputDir));			
 			
 		} catch (IOException e) {
-			throw new DashboardException("Error writing dahsboard page! \n" + "Details: \n" + e);
+			throw new DashboardException("Error writing dashboard page! \n" + "Details: \n" + e);
 		}				
 	}
 	
