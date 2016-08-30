@@ -14,7 +14,7 @@ import br.com.tiagoamp.dashboard.model.ProjectDashBoard;
 public class ProjectDashBoardTest {
 
 	@Test
-	public void testGenerateDashBoard() {
+	public void testGenerateDashBoard_shouldGenerateDashboard() {
 		Path xmlFile = Paths.get("inputTestsFiles/example_tests.xml");
 		Path jsonFile = Paths.get("inputTestsFiles/example_tests.json");
 		try {
@@ -31,7 +31,7 @@ public class ProjectDashBoardTest {
 	}
 	
 	@Test
-	public void testSaveOutputFile() {
+	public void testSaveOutputFile_shouldSaveDashboardFiles() {
 		Path xmlFile = Paths.get("inputTestsFiles/example_tests.xml");
 		try {
 			ProjectDashBoard dashboardFromXml = new ProjectDashBoard(xmlFile, xmlFile.getParent());
