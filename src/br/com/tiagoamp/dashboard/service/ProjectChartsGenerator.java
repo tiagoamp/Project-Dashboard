@@ -109,7 +109,7 @@ public class ProjectChartsGenerator {
 		
 		strB.append( String.format("[%d,%.2f,%.2f], <!-- %s--> %n", qtDaysPreviousSprint,0F,0F,DateFormat.getDateInstance().format(cal.getTime()) ) );
 		strB.append("]);" + "\n" );
-		
+				
 		strB.append( "// Set chart options \n" +
 					 "var options = {'title':'Itens per status', \n" + 
 					 "'width':300, \n" + 
@@ -139,7 +139,7 @@ public class ProjectChartsGenerator {
 					 "var chart2 = new google.visualization.LineChart(document.getElementById('chart_div2')); \n" + 
 					 "chart2.draw(data2, options2); \n" + 
 					 "} \n" );
-		
+				
 		return strB.toString();
 	}
 	

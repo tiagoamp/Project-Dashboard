@@ -22,6 +22,20 @@ public class Sprint {
 	private Date end;
 	
 	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Sprint && ((Sprint)obj).getNumber() == this.number) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.number; // inefficient, but are there so many sprints in projects? #shameOnMe #IwillFixThis  :-(
+	}
+	
+	
 	public void print() {
 		System.out.printf("\t Sprint: %s - %s \n", number, goal);
 		System.out.printf("\t Init: %s \n", init == null ? "?" : DateFormat.getDateInstance().format(init));

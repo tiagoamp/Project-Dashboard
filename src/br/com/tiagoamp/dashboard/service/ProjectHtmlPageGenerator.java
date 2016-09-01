@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -62,8 +63,7 @@ public class ProjectHtmlPageGenerator {
 			default:
 				break;
 			}
-			/*strBStatus.append("<td>"+(item.getStatus() == Status.DONE ? "X" : "")  +"</td>" +
-						"</tr>");*/
+			/*strBStatus.append("<td>"+(item.getStatus() == Status.DONE ? "X" : "")  +"</td>" +	"</tr>");*/
 			strBStatus.append("<td><div class='progress-bar' role='progressbar' aria-valuemin='0' aria-valuemax='100' " +
 					"style='width:" + item.getPercent() + "%;'>" + item.getPercent() + "%" + "</div></td>");
 			strBStatus.append("</tr>");			
@@ -95,6 +95,24 @@ public class ProjectHtmlPageGenerator {
 							"<td>"+DateFormat.getDateInstance().format(sprint.getEnd())+"</td>" +
 						"</tr>");
 		}	
+		
+		// ITENS PER ITERATIONS
+		elem = doc.getElementById("tbl_itensiterations");
+		elem = elem.getElementById("tbl_header");
+		Map<Sprint, List<Item>> map = project.getItensPerSprints();
+		for (Sprint sprint : map.keySet()) { // headers
+			elem.append("<th>" + "Iteration " + sprint.getNumber() + "</th>");
+		}
+		elem = doc.getElementById("tbl_itensiterations");
+		elem = elem.getElementById("tbl_body");
+		for (Sprint sprint : map.keySet()) { // headers
+			List<Item> itensOfSprint = map.get(sprint);
+			StringBuffer itensStr = new StringBuffer();
+			for (Item item : itensOfSprint) {
+				itensStr.append("<div class=\"itempost\">" + item.getId() + " - " + item.getDescription() + "</div>");
+			}
+			elem.append("<td>" + itensStr + "</td>");
+		}
 				
 		// KANBAN
 		elem = doc.getElementById("tbl_kanban");
@@ -133,6 +151,7 @@ public class ProjectHtmlPageGenerator {
 				elem.append("<div class=\"itempost\"><span class='label label-warning'>" + item.getId() + " - " + item.getDescription() + "</span></div>");
 			}
 		}
+			
 		
 		return doc.toString();		
 	}

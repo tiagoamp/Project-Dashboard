@@ -4,7 +4,9 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -72,6 +74,21 @@ public class Project {
 		}
 		return lista;
 	}
+	
+	public Map<Sprint, List<Item>> getItensPerSprints() {
+		Map<Sprint, List<Item>> result = new HashMap<>();
+		for (Sprint sprint : sprints) {
+			List<Item> itens = new ArrayList<>();
+			for (Item item : backlog) {
+				if (item.getSprintNumber() == sprint.getNumber()) {
+					itens.add(item);
+				}
+			}
+			result.put(sprint, itens);
+		}
+		return result;
+	}
+	
 	
 	
 	public String getCode() {
