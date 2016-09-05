@@ -35,7 +35,7 @@ public class ProjectXmlLoaderTest {
 
 
 	@Test
-	public void testParse() {
+	public void testParse_shouldGenerateValidProject() {
 		try {
 			Project project = xmlLoader.parse(xmlFilePath);
 			assertTrue(project != null);
@@ -47,7 +47,7 @@ public class ProjectXmlLoaderTest {
 	}
 
 	@Test
-	public void testPrintXmlInfo() {
+	public void testPrintJsonInfo_shouldPrintSuccessfully() {
 		try {
 			xmlLoader.printInfo(xmlFilePath);
 			assertTrue("No exception expected!", true);

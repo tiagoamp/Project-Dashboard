@@ -35,7 +35,7 @@ public class ProjectJsonLoaderTest {
 
 	
 	@Test
-	public void testParse() {
+	public void testParse_shouldGenerateValidProject() {
 		try {
 			Project project = jsonLoader.parse(jsonFilePath);
 			assertTrue(project != null);
@@ -47,7 +47,7 @@ public class ProjectJsonLoaderTest {
 	}
 	
 	@Test
-	public void testPrintJsonInfo() {
+	public void testPrintJsonInfo_shouldPrintSuccessfully() {
 		try {
 			jsonLoader.printInfo(jsonFilePath);
 			assertTrue("No exception expected!", true);
