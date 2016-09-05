@@ -53,7 +53,7 @@ public class ProjectXmlLoaderTest {
 			assertTrue("No exception expected!", true);
 		} catch (IOException | ParseException | ParserConfigurationException | SAXException e) {
 			e.printStackTrace();
-			fail();
+			fail("No exception expected!");
 		}		
 	}
 

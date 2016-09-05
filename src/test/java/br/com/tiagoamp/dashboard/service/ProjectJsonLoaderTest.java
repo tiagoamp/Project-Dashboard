@@ -23,13 +23,13 @@ public class ProjectJsonLoaderTest {
 	private Path jsonFilePath; 
 	
 	@Before
-	public void runBefore() {
+	public void setup() {
 		jsonLoader = ProjectLoaderFactory.getProjectLoader("json");
 		jsonFilePath = Paths.get("resources/inputTestsFiles/example_tests.json");		
 	}
 	
 	@After
-	public void runAfter() {
+	public void tearDown() {
 		jsonLoader = null;
 	}
 
@@ -53,7 +53,7 @@ public class ProjectJsonLoaderTest {
 			assertTrue("No exception expected!", true);
 		} catch (IOException | ParseException | ParserConfigurationException | SAXException e) {
 			e.printStackTrace();
-			fail();
+			fail("No exception expected!");
 		}
 		
 	}
