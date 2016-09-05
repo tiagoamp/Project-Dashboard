@@ -3,12 +3,17 @@ package br.com.tiagoamp.dashboard.service;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.ParseException;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.xml.sax.SAXException;
 
 import br.com.tiagoamp.dashboard.model.Project;
 
@@ -43,8 +48,14 @@ public class ProjectJsonLoaderTest {
 	
 	@Test
 	public void testPrintJsonInfo() {
-		jsonLoader.printInfo(jsonFilePath);
-		assertTrue("No exception expected!", true);
+		try {
+			jsonLoader.printInfo(jsonFilePath);
+			assertTrue("No exception expected!", true);
+		} catch (IOException | ParseException | ParserConfigurationException | SAXException e) {
+			e.printStackTrace();
+			fail();
+		}
+		
 	}
 
 }

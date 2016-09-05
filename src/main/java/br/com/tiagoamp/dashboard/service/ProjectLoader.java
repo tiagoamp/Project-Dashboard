@@ -28,7 +28,11 @@ public interface ProjectLoader {
 	 * Prints file data.
 	 * 
 	 * @param filePath
+	 * @throws IOException 
+	 * @throws ParseException 
+	 * @throws ParserConfigurationException 
+	 * @throws SAXException 
 	 */
-	public void printInfo(Path filePath);
+	public void printInfo(Path filePath) throws IOException, ParseException, ParserConfigurationException, SAXException;
 
 }

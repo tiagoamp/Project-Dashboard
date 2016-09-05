@@ -27,13 +27,13 @@ public class ProjectXmlLoaderTest {
 		xmlLoader = ProjectLoaderFactory.getProjectLoader("xml");
 		xmlFilePath = Paths.get("resources/inputTestsFiles/example_tests.xml");
 	}
-	
+
 	@After
 	public void runAfter() {
 		xmlLoader = null;
 	}
 
-	
+
 	@Test
 	public void testParse() {
 		try {
@@ -48,8 +48,13 @@ public class ProjectXmlLoaderTest {
 
 	@Test
 	public void testPrintXmlInfo() {
-		xmlLoader.printInfo(xmlFilePath);
-		assertTrue("No exception expected!", true);
+		try {
+			xmlLoader.printInfo(xmlFilePath);
+			assertTrue("No exception expected!", true);
+		} catch (IOException | ParseException | ParserConfigurationException | SAXException e) {
+			e.printStackTrace();
+			fail();
+		}		
 	}
 
 }

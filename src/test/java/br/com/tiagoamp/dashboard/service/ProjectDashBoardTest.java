@@ -12,10 +12,11 @@ import br.com.tiagoamp.dashboard.model.DashboardException;
 
 public class ProjectDashBoardTest {
 
+	Path xmlFile = Paths.get("resources/inputTestsFiles/example_tests.xml");
+	Path jsonFile = Paths.get("resources/inputTestsFiles/example_tests.json");
+	
 	@Test
-	public void testGenerateDashBoard_shouldGenerateDashboard() {
-		Path xmlFile = Paths.get("resources/inputTestsFiles/example_tests.xml");
-		Path jsonFile = Paths.get("resources/inputTestsFiles/example_tests.json");
+	public void testGenerateDashBoard_shouldGenerateDashboard() {		
 		try {
 			ProjectDashBoard dashboardFromXml = new ProjectDashBoard(xmlFile, xmlFile.getParent());
 			dashboardFromXml.generateDashBoard();			
@@ -30,8 +31,7 @@ public class ProjectDashBoardTest {
 	}
 	
 	@Test
-	public void testSaveOutputFile_shouldSaveDashboardFiles() {
-		Path xmlFile = Paths.get("resources/inputTestsFiles/example_tests.xml");
+	public void testSaveOutputFile_shouldSaveDashboardFiles() {		
 		try {
 			ProjectDashBoard dashboardFromXml = new ProjectDashBoard(xmlFile, xmlFile.getParent());
 			dashboardFromXml.generateDashBoard();

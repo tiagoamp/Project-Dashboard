@@ -88,54 +88,37 @@ public class ProjectXmlLoader implements ProjectLoader {
 		return project;
 	}
 
-	public void printInfo(Path xmlFile) {
+	public void printInfo(Path file) throws IOException, ParseException, ParserConfigurationException, SAXException {
 		try {
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(xmlFile.toFile());
-			doc.getDocumentElement().normalize();
+			Project project = this.parse(file);
 			
-			Element rootElement = doc.getDocumentElement(); // 'project'
-			System.out.println("Root element :" + rootElement.getNodeName());
-			System.out.println("Codigo projeto: " + rootElement.getAttribute("cod"));
-			System.out.println("----------------------------");
-			System.out.println("Name : " + rootElement.getElementsByTagName("name").item(0).getTextContent());
-			System.out.println("initDate : " + rootElement.getElementsByTagName("initDate").item(0).getTextContent());
-			System.out.println("endDate : " + rootElement.getElementsByTagName("endDate").item(0).getTextContent());
-			System.out.println("----------------------------");
-			NodeList nList = doc.getElementsByTagName("sprint");
-			for (int temp = 0; temp < nList.getLength(); temp++) {
-				Node nNode = nList.item(temp);					
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-					Element eElement = (Element) nNode;
-					System.out.println("SPRINT");
-					System.out.println("number : " + eElement.getElementsByTagName("number").item(0).getTextContent());
-					System.out.println("goal : " + eElement.getElementsByTagName("goal").item(0).getTextContent());
-					System.out.println("init : " + eElement.getElementsByTagName("initDate").item(0).getTextContent());
-					System.out.println("end : " + eElement.getElementsByTagName("endDate").item(0).getTextContent());
-					System.out.println("----------------------------");
-				}
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			// project
+			System.out.println("Name: " + project.getName());
+			System.out.println("Init: " + sdf.format(project.getInitialDate()));
+			
+			// sprints
+			System.out.println("= SPRINTS = ");
+			for (Sprint sprint : project.getSprints()) {
+				System.out.println("Sprint number: " + sprint.getNumber());
+				System.out.println("Init: " + sdf.format(sprint.getInit()));
+				System.out.println("End:" + sdf.format(sprint.getEnd()));
+				System.out.println("Goal:" + sprint.getGoal());
 			}
-			System.out.println("----------------------------");		
-			nList = doc.getElementsByTagName("item");
-			for (int temp = 0; temp < nList.getLength(); temp++) {
-				Node nNode = nList.item(temp);					
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-					Element eElement = (Element) nNode;
-					System.out.println("ITEM");
-					System.out.println("id : " + eElement.getElementsByTagName("id").item(0).getTextContent());
-					System.out.println("description : " + eElement.getElementsByTagName("description").item(0).getTextContent());
-					System.out.println("points : " + eElement.getElementsByTagName("points").item(0).getTextContent());
-					System.out.println("status : " + eElement.getElementsByTagName("status").item(0).getTextContent());
-					System.out.println("sprintNumber : " + eElement.getElementsByTagName("sprintNumber").item(0).getTextContent());
-					System.out.println("init : " + eElement.getElementsByTagName("init").item(0).getTextContent());
-					System.out.println("end : " + eElement.getElementsByTagName("end").item(0).getTextContent());
-					System.out.println("----------------------------");
-				}
+			
+			// backlog
+			System.out.println("= ITENS =");
+			for (Item item : project.getBacklog()) {
+				System.out.println("id:" + item.getId());
+				System.out.println("Description:" + item.getDescription());
+				System.out.println("Points:" + item.getPoints());
+				System.out.println("Sprint number:" + item.getSprintNumber());
+				System.out.println("Status: " + item.getStatus());
 			}
-		} catch (ParserConfigurationException | SAXException | IOException e) {
+		} catch (ParseException | IOException | ParserConfigurationException | SAXException e) {
 			e.printStackTrace();
-			System.exit(1);
+			throw e;
 		} 
 	}
 			
