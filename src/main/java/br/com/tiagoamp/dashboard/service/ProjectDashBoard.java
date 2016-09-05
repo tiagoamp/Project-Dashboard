@@ -1,4 +1,4 @@
-package br.com.tiagoamp.dashboard.model;
+package br.com.tiagoamp.dashboard.service;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -18,10 +18,8 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import br.com.tiagoamp.dashboard.service.ProjectChartsGenerator;
-import br.com.tiagoamp.dashboard.service.ProjectHtmlPageGenerator;
-import br.com.tiagoamp.dashboard.service.ProjectLoader;
-import br.com.tiagoamp.dashboard.service.ProjectLoaderFactory;
+import br.com.tiagoamp.dashboard.model.DashboardException;
+import br.com.tiagoamp.dashboard.model.Project;
 
 /**
  * 

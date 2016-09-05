@@ -9,7 +9,6 @@ import java.nio.file.Paths;
 import org.junit.Test;
 
 import br.com.tiagoamp.dashboard.model.DashboardException;
-import br.com.tiagoamp.dashboard.model.ProjectDashBoard;
 
 public class ProjectDashBoardTest {
 

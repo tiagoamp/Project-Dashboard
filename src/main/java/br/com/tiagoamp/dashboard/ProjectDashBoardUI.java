@@ -4,7 +4,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import br.com.tiagoamp.dashboard.model.DashboardException;
-import br.com.tiagoamp.dashboard.model.ProjectDashBoard;
+import br.com.tiagoamp.dashboard.service.ProjectDashBoard;
 
 /**
  * Dashboard User Interface.
