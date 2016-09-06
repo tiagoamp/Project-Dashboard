@@ -33,17 +33,19 @@ public class ProjectDashBoard {
 	
 	private static Path pageLayoutFile = Paths.get("resources/layout/dashboard_layout.html");
 	private static Path standardOutput = Paths.get("resources/output");
-	private ProjectLoader loader;
-	private Project project;
-	
 	private String[] types = {"xml","json"};
 	
+	private ProjectLoader loader;
+	
+	private Project project;
 	private Path outputDir;		
 	private String pageHtmlCode;
 	private String chartsJsCode;
 	
-	
-	public ProjectDashBoard(Path inputFile, Path outputDir) throws DashboardException {
+	public ProjectDashBoard() {		
+	}
+			
+	public void generateDashBoard(Path inputFile) throws DashboardException {
 		String fileType = null;
 		for (String type : types) {
 			if (inputFile.toString().endsWith(type)) {
@@ -55,16 +57,13 @@ public class ProjectDashBoard {
 			throw new DashboardException("Unrecognized file type!");			
 		}		
 		loader = ProjectLoaderFactory.getProjectLoader(fileType);
-		this.outputDir = outputDir;
-		
+				
 		try {
 			project = loader.parse(inputFile);					
 		} catch (ParserConfigurationException | SAXException | IOException | ParseException e) {
 			throw new DashboardException("Error in file parsing! \n" + "Details: \n" + e);
 		}
-	}
-			
-	public void generateDashBoard() throws DashboardException {
+		
 		try {
 			pageHtmlCode = new ProjectHtmlPageGenerator(project, pageLayoutFile).generateHtmlPageCode();
 			chartsJsCode = new ProjectChartsGenerator(project).generateChartsCode();
@@ -73,7 +72,9 @@ public class ProjectDashBoard {
 		}		
 	}
 			
-	public void saveOutputFiles() throws DashboardException {
+	public void saveOutputFiles(Path outputDir) throws DashboardException {
+		if (outputDir == null) throw new IllegalArgumentException("Output dir cannot be null!");
+		this.outputDir = outputDir;
 		try {
 			byte[] buf = pageHtmlCode.getBytes();
 			FileOutputStream fos = new FileOutputStream(standardOutput.resolve("dashboard.html").toFile(),false);
@@ -145,6 +146,9 @@ public class ProjectDashBoard {
 	}
 	public void setChartsJsCode(String chartsJsCode) {
 		this.chartsJsCode = chartsJsCode;
+	}
+	public void setLoader(ProjectLoader loader) {
+		this.loader = loader;
 	}
 	
 }

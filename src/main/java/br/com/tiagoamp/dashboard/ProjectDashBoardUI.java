@@ -22,9 +22,9 @@ public class ProjectDashBoardUI {
 			Path inputFile = Paths.get(args[0]);
 			Path outputDirFile = Paths.get(args[1]);
 						
-			ProjectDashBoard dashboard = new ProjectDashBoard(inputFile, outputDirFile);
-			dashboard.generateDashBoard();
-			dashboard.saveOutputFiles();
+			ProjectDashBoard dashboard = new ProjectDashBoard();
+			dashboard.generateDashBoard(inputFile);
+			dashboard.saveOutputFiles(outputDirFile);
 			
 		} catch (DashboardException e) {
 			System.out.println(e.getMessage());
