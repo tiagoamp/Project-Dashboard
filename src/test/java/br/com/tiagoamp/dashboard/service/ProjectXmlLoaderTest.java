@@ -46,15 +46,4 @@ public class ProjectXmlLoaderTest {
 		}
 	}
 
-	@Test
-	public void testPrintJsonInfo_shouldPrintSuccessfully() {
-		try {
-			xmlLoader.printInfo(xmlFilePath);
-			assertTrue("No exception expected!", true);
-		} catch (IOException | ParseException | ParserConfigurationException | SAXException e) {
-			e.printStackTrace();
-			fail("No exception expected!");
-		}		
-	}
-
 }

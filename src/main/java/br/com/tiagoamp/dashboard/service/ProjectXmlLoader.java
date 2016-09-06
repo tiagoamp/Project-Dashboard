@@ -87,39 +87,5 @@ public class ProjectXmlLoader implements ProjectLoader {
 		project.setBacklog(backlog);
 		return project;
 	}
-
-	public void printInfo(Path file) throws IOException, ParseException, ParserConfigurationException, SAXException {
-		try {
-			Project project = this.parse(file);
-			
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			
-			// project
-			System.out.println("Name: " + project.getName());
-			System.out.println("Init: " + sdf.format(project.getInitialDate()));
-			
-			// sprints
-			System.out.println("= SPRINTS = ");
-			for (Sprint sprint : project.getSprints()) {
-				System.out.println("Sprint number: " + sprint.getNumber());
-				System.out.println("Init: " + sdf.format(sprint.getInit()));
-				System.out.println("End:" + sdf.format(sprint.getEnd()));
-				System.out.println("Goal:" + sprint.getGoal());
-			}
-			
-			// backlog
-			System.out.println("= ITENS =");
-			for (Item item : project.getBacklog()) {
-				System.out.println("id:" + item.getId());
-				System.out.println("Description:" + item.getDescription());
-				System.out.println("Points:" + item.getPoints());
-				System.out.println("Sprint number:" + item.getSprintNumber());
-				System.out.println("Status: " + item.getStatus());
-			}
-		} catch (ParseException | IOException | ParserConfigurationException | SAXException e) {
-			e.printStackTrace();
-			throw e;
-		} 
-	}
 			
 }

@@ -23,16 +23,5 @@ public interface ProjectLoader {
 	 * @throws ParseException
 	 */
 	public Project parse(Path filePath) throws ParserConfigurationException, SAXException, IOException, ParseException;
-	
-	/**
-	 * Prints file data.
-	 * 
-	 * @param filePath
-	 * @throws IOException 
-	 * @throws ParseException 
-	 * @throws ParserConfigurationException 
-	 * @throws SAXException 
-	 */
-	public void printInfo(Path filePath) throws IOException, ParseException, ParserConfigurationException, SAXException;
-
+		
 }
