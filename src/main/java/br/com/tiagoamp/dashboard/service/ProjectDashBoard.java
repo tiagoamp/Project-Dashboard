@@ -123,12 +123,6 @@ public class ProjectDashBoard {
 	}
 	
 	
-	public Project getProject() {
-		return project;
-	}
-	public void setProject(Project project) {
-		this.project = project;
-	}
 	public Path getOutputFile() {
 		return outputDir;
 	}
@@ -146,9 +140,6 @@ public class ProjectDashBoard {
 	}
 	public void setChartsJsCode(String chartsJsCode) {
 		this.chartsJsCode = chartsJsCode;
-	}
-	public void setLoader(ProjectLoader loader) {
-		this.loader = loader;
-	}
+	}	
 	
 }

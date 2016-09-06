@@ -28,13 +28,19 @@ public class ProjectDashBoardTest {
 		assertTrue("No exception expected from trello json input file!", true);				
 	}
 	
-	@Test
-	public void testSaveOutputFile_shouldThrowsIllegalArgumentException() throws DashboardException {		
-		try {
-			dashboard.saveOutputFiles(null);
-		} catch (IllegalArgumentException e) {
-			assertTrue("Exception expected!", true);
-		}			
+	@Test(expected = DashboardException.class)
+	public void testGenerateDashBoard_shouldThrowsExceptionFromInvalidFileExtension() throws DashboardException {		
+     	dashboard.generateDashBoard(Paths.get("dummy.dat"));								
+	}
+	
+	@Test(expected = DashboardException.class)
+	public void testGenerateDashBoard_shouldThrowsExceptionFromInexistentFile() throws DashboardException {		
+     	dashboard.generateDashBoard(Paths.get("dummy.xml"));								
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testSaveOutputFile_shouldThrowsExceptionFromNullFileArgument() throws DashboardException {		
+		dashboard.saveOutputFiles(null);					
 	}
 	
 	@Test
