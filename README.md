@@ -1,5 +1,5 @@
 # Project-Dashboard
-Dashborad generator based in 'xml' and 'trello-json' input files.
+Dashboard generator based in 'xml' and 'trello-json' input files.
 
 It is based in xml/json templates, from where this program generates an html page with charts, backlog, kanban and other project informations.
 
